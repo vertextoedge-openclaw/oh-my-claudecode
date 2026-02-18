@@ -165,7 +165,7 @@ export class LspClient {
     /**
      * Send a request to the server
      */
-    async request(method, params, timeout = 15000) {
+    async request(method, params, timeout = Number(process.env.OMC_LSP_TIMEOUT) || 15000) {
         if (!this.process?.stdin) {
             throw new Error('LSP server not connected');
         }

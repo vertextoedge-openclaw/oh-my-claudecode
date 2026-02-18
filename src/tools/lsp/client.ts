@@ -282,7 +282,7 @@ export class LspClient {
   /**
    * Send a request to the server
    */
-  private async request<T>(method: string, params: unknown, timeout = 15000): Promise<T> {
+  private async request<T>(method: string, params: unknown, timeout = Number(process.env.OMC_LSP_TIMEOUT) || 15000): Promise<T> {
     if (!this.process?.stdin) {
       throw new Error('LSP server not connected');
     }
